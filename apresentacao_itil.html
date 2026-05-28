@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação ITIL 4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #4f46e5; /* Índigo */
+            --secondary: #0d9488; /* Teal */
+            --bg-color: #0f172a; /* Dark Slate */
+            --text-main: #cbd5e1;
+            --text-title: #ffffff;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #1e293b;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            font-family: 'Nunito Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Contêiner de cada slide - Tamanho fixo 16:9 */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: var(--bg-color);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+            border-radius: 16px;
+            overflow: hidden;
+            color: var(--text-main);
+            flex-shrink: 0;
+        }
+        
+        /* Fundo abstrato tecnológico */
+        .slide-container::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(13, 148, 136, 0.15) 0%, transparent 40%);
+            z-index: 0; pointer-events: none;
+        }
+        
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; z-index: 1; color: var(--text-title); position: relative; }
+        p, ul { z-index: 1; position: relative; font-size: 22px; line-height: 1.6; }
+        
+        /* Títulos dos Slides */
+        .slide-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .slide-title::before {
+            content: '';
+            display: block;
+            width: 8px; height: 48px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+
+        /* Layout e Cards */
+        .card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1;
+            position: relative;
+        }
+
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; height: 100%; align-items: center; z-index: 1; position: relative;}
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; z-index: 1; position: relative;}
+        
+        /* Ilustrações Vetoriais */
+        .vector-img {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Listas */
+        ul { list-style: none; }
+        li { margin-bottom: 30px; display: flex; align-items: flex-start; gap: 20px; }
+        li i { color: var(--secondary); font-size: 28px; margin-top: 5px; }
+        strong { color: #fff; }
+
+        /* Timeline (Estudo de Caso) */
+        .timeline { display: flex; justify-content: space-between; align-items: center; position: relative; margin-top: 80px; z-index: 1; }
+        .timeline::before { content: ''; position: absolute; top: 12px; width: 100%; height: 4px; background: rgba(255,255,255,0.1); z-index: 0; }
+        .timeline-step { position: relative; z-index: 1; text-align: center; width: 22%; }
+        .step-dot { width: 28px; height: 28px; background: var(--secondary); border-radius: 50%; margin: 0 auto 20px; border: 4px solid var(--bg-color); box-shadow: 0 0 0 2px var(--secondary); }
+        .step-content { background: rgba(30, 41, 59, 0.9); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .step-content h4 { color: #fff; margin-bottom: 10px; font-size: 20px; }
+        .step-content p { font-size: 16px; margin: 0; line-height: 1.4; }
+        
+        /* Capa */
+        .title-slide { text-align: center; justify-content: center; align-items: center; }
+        .title-slide h1 { font-size: 80px; background: linear-gradient(to right, #818cf8, #2dd4bf); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; }
+        .title-slide p { font-size: 32px; color: #94a3b8; }
+        
+        /* Ícones em Cards */
+        .icon-card { text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .icon-card i { font-size: 56px; color: var(--primary); margin-bottom: 25px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="slide-container title-slide">
+        <h1>ITIL 4 na Gestão de TI</h1>
+        <p>Alinhando Tecnologia, Serviços e Estratégia de Negócios</p>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">Governança: ITIL vs COBIT</h2>
+        <div class="two-column">
+            <div class="card" style="height: 100%;">
+                <h3><i class="fa-solid fa-gavel" style="color: var(--secondary); margin-right: 15px;"></i> COBIT (O "O que")</h3>
+                <p style="margin-top: 25px; font-size: 22px;">Foca na <strong>Governança Corporativa</strong>. Define diretrizes, objetivos e métricas essenciais para alinhar a TI às necessidades dos stakeholders e garantir a conformidade (Auditoria e Controle).</p>
+            </div>
+            <div class="card" style="height: 100%;">
+                <h3><i class="fa-solid fa-gears" style="color: var(--primary); margin-right: 15px;"></i> ITIL 4 (O "Como")</h3>
+                <p style="margin-top: 25px; font-size: 22px;">Foca no <strong>Gerenciamento de Serviços (ITSM)</strong>. Fornece práticas detalhadas sobre como desenhar, transicionar, entregar e suportar os serviços no dia a dia da operação.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">As 4 Dimensões do Gerenciamento</h2>
+        <div class="two-column">
+            <ul>
+                <li><i class="fa-solid fa-users"></i> <div><strong>Organizações e Pessoas:</strong> Cultura corporativa, liderança e competências.</div></li>
+                <li><i class="fa-solid fa-server"></i> <div><strong>Informação e Tecnologia:</strong> Dados, infraestrutura, cloud e segurança.</div></li>
+                <li><i class="fa-solid fa-handshake"></i> <div><strong>Parceiros e Fornecedores:</strong> Contratos, terceirização e integrações.</div></li>
+                <li><i class="fa-solid fa-project-diagram"></i> <div><strong>Fluxos de Valor e Processos:</strong> Orquestração de atividades para gerar valor.</div></li>
+            </ul>
+            <img src="https://raw.githubusercontent.com/unDrawStudio/undraw-illustrations/master/illustrations/undraw_server_cluster_jwwq.svg" alt="Ilustração de Infraestrutura" class="vector-img">
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">Princípios Orientadores do ITIL 4</h2>
+        <div class="grid-3" style="margin-top: 40px;">
+            <div class="card icon-card">
+                <i class="fa-solid fa-bullseye"></i>
+                <h3>Foco no Valor</h3>
+                <p style="font-size: 18px; margin-top: 20px;">Todas as atividades da TI devem gerar benefício claro e tangível para o negócio e para o utilizador final.</p>
+            </div>
+            <div class="card icon-card">
+                <i class="fa-solid fa-rotate"></i>
+                <h3>Progresso Iterativo</h3>
+                <p style="font-size: 18px; margin-top: 20px;">Avançar em pequenos passos com feedback constante, alinhando a TI às metodologias Ágeis.</p>
+            </div>
+            <div class="card icon-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Otimizar e Automatizar</h3>
+                <p style="font-size: 18px; margin-top: 20px;">Mapear e simplificar os processos primeiro; aplicar tecnologia e automação somente depois.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">Estudo de Caso: Crise Bancária</h2>
+        <div class="two-column">
+            <div>
+                <p><strong>O Cenário:</strong> Quinto dia útil, pico de acessos e a aplicação do banco cai após uma atualização mal-sucedida.</p>
+                <div class="card" style="margin-top: 40px; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3);">
+                    <h4 style="color: #fca5a5; margin-bottom: 15px;"><i class="fa-solid fa-triangle-exclamation"></i> Impacto sem ITIL</h4>
+                    <ul style="font-size: 18px; margin-bottom: 0;">
+                        <li style="margin-bottom: 10px;">Silos: Equipas "a baterem com a cabeça" sem coordenação.</li>
+                        <li style="margin-bottom: 10px;">Silêncio: Falta de comunicação técnica com os clientes.</li>
+                        <li style="margin-bottom: 0;">Demora: Lentidão para diagnosticar a causa raiz.</li>
+                    </ul>
+                </div>
+            </div>
+            <img src="https://raw.githubusercontent.com/unDrawStudio/undraw-illustrations/master/illustrations/undraw_warning_cyit.svg" alt="Ilustração de Erro de Sistema" class="vector-img">
+        </div>
+    </div>
+
+    <div class="slide-container">
+        <h2 class="slide-title">Resposta com Práticas ITIL 4</h2>
+        <p style="text-align: center; color: #94a3b8;">Transformando o caos num fluxo de resolução ágil e estruturado.</p>
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="step-dot"></div>
+                <div class="step-content">
+                    <h4>1. Incidente</h4>
+                    <p>Foco imediato no contorno. Restabelecer o serviço via reversão (Rollback) da atualização.</p>
+                </div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-dot"></div>
+                <div class="step-content">
+                    <h4>2. Service Desk</h4>
+                    <p>Comunicação em massa e transparente com os utilizadores enquanto a TI atua em backend.</p>
+                </div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-dot"></div>
+                <div class="step-content">
+                    <h4>3. Problema</h4>
+                    <p>Análise de causa raiz (RCA) após a estabilização para garantir que a falha não se repita.</p>
+                </div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-dot"></div>
+                <div class="step-content">
+                    <h4>4. Melhoria Contínua</h4>
+                    <p>Ajustes nos testes e aprovações (Controlo de Mudanças) para as próximas implementações.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
