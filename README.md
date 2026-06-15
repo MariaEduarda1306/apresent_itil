@@ -1,4 +1,3 @@
-```md
 # Motor de Apresentação de Slides Vanilla JS
 
 Este documento explica o funcionamento do sistema de apresentação de slides construído com HTML, Tailwind CSS e JavaScript puro (Vanilla JS). O motor é leve e baseia-se na manipulação de classes para exibir ou ocultar seções, além de escutar múltiplos eventos de interação do utilizador.
@@ -112,5 +111,3 @@ Mede a distância do movimento do dedo no eixo horizontal da tela.
 3.  Compara os dois pontos com uma margem de segurança de `50px` para evitar toques acidentais:
     * Se o ponto final for muito à esquerda do inicial (Arrastar para a esquerda), dispara `nextSlide()`.
     * Se o ponto final for muito à direita do inicial (Arrastar para a direita), dispara `prevSlide()`.
-
-```
